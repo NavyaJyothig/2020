@@ -1,34 +1,62 @@
 #include<stdio.h>
+#include<math.h>
 struct line
 {
-int x1,y1;
-int x2,y2;
-int x,y;
+	float x1,y1;
+	float x2,y2;
+	float x,y;
 };
 struct lines
 {
-int n;
-struct line num[100];
+	double n;
+	struct line num[100];
 };
 void input_function()
 { 
+	struct lines notice;
+	printf("Enter the number of outputs\n");
+	scanf("%f",&notice.n);
+	for(int i=0;i<notice.n;i++)	
+	{
+
+		printf("Enter the values of x and y coordinate of point P1\n");
+		scanf("%f%f",&notice.num[i].x1,&notice.num[i].y1);
+		printf("Enter the values of x and y coordinate of point P2\n");
+		scanf("%f%f",&notice.num[i].x2,&notice.num[i].y2);
+		printf("Enter the values of x and y coordinate of point P\n");
+		scanf("%f%f",&notice.num[i].x,&notice.num[i].y);
+		if((notice.num[i].x1==notice.num[i].x2&&notice.num[i].x1==notice.num[i].x)&&(notice.num[i].y1==notice.num[i].y2&&notice.num[i].y2==notice.num[i].y))
+			{
+				printf("Enter the values of x and y coordinate of point P1\n");
+				scanf("%f%f",&notice.num[i].x1,&notice.num[i].y1);
+				printf("Enter the values of x and y coordinate of point P2\n");
+				scanf("%f%f",&notice.num[i].x2,&notice.num[i].y2);
+				printf("Enter the values of x and y coordinate of point P\n");
+				scanf("%f%f",&notice.num[i].x,&notice.num[i].y);
+			}
+	}
+}
+void compute()
+{
 struct lines notice;
-printf("Enter the number of outputs\n");
-scanf("%d",&notice.n);
 for(int i=0;i<notice.n;i++)
 {
+double dis=sqrt(((notice.num[i].x2-notice.num[i].x1)*(notice.num[i].x2-notice.num[i].x1))+((notice.num[i].y2-notice.num[i].y1)*(notice.num[i].y2-notice.num[i].y1)));
+double dis1=sqrt(((notice.num[i].x2-notice.num[i].x1)*(notice.num[i].x-notice.num[i].x1))+((notice.num[i].y2-notice.num[i].y1)*(notice.num[i].y2-notice.num[i].y1)));
+double dis2=sqrt(((notice.num[i].x2-notice.num[i].x)*(notice.num[i].x2-notice.num[i].x))+((notice.num[i].y2-notice.num[i].y)*(notice.num[i].y2-notice.num[i].y)));
+double distance=dis1+dis2;
+if(distance==dis)
 
-printf("Enter the values of x and y coordinate of point P1\n");
-scanf("%d%d",&notice.num[i].x1,&notice.num[i].y1);
-printf("Enter the values of x and y coordinate of point P2\n");
-scanf("%d%d",&notice.num[i].x2,&notice.num[i].y2);
-printf("Enter the values of x and y coordinate of point P\n");
-scanf("%d%d",&notice.num[i].x,&notice.num[i].y);
+printf("The point (%f%f)lies between(%f%f)and (%f%f)",&notice.num[i].x,&notice.num[i].y,&notice.num[i].x1,&notice.num[i].y1,&notice.num[i].x2,&notice.num[i].y2);
+else
+printf("The point (%f%f)liesdoetween(%f%f)and (%f%f)",&notice.num[i].x,&notice.num[i].y,&notice.num[i].x1,&notice.num[i].y1,&notice.num[i].x2,&notice.num[i].y2);
+
 }
 }
 int main()
 {
 input_function();
+compute();
 }
 
 
