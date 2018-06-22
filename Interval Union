@@ -10,7 +10,7 @@ struct intervals
 	int n;
 	struct interval a[100];
 };
-struct unions
+struct range
 {
 	struct intervals b[100];
 };
@@ -25,23 +25,48 @@ struct interval input_function()
 			
 		scanf("%d",&k.a[i]);
 		scanf("%d",&k.b[i]);
+	
+			if(k.a[i]>k.b[i])
+			{
+				printf("Error! invalid condition of interval\n");
+				printf("ENTER THE CORRECT INTERVAL\n");
+				scanf("%d",&k.a[i]);
+				scanf("%d",&k.b[i]);
+			}
 	}
 	return k;
 }
-struct intervals input_union(struct interval k)
+struct intervals input_union()
 {
+	struct interval k;
 	struct intervals l;
 	printf("Enter the number of unions");
 	scanf("%d",&l.n);
 	for(int i=0;i<l.n;i++)
 	{
 	k=input_function();
+	l.a[i]=k;
 	}
 	return l;
 }
+int compute(struct interval k)
+{
+	for(int i=0;i<k.r;i++)
+	{
+		if(k.b[i]<k.a[i+1])
+		printf("THE union is in normal form\n");
+		else
+		printf("the union is in  not in normal form\n");
+	}
+	
+}
+	
 int main()
 {
 	struct intervals l;
 	struct interval k;
-	l=input_union(k);
+	struct range s;
+	l=input_union();
+	compute(l.a[0]);
+	
 }
