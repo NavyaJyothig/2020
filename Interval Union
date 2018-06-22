@@ -1,0 +1,47 @@
+#include<stdio.h>
+struct interval
+{
+	int r;
+	int a[100];
+	int b[100];
+};
+struct intervals
+{
+	int n;
+	struct interval a[100];
+};
+struct unions
+{
+	struct intervals b[100];
+};
+struct interval input_function()
+{
+	struct interval k;
+	printf("Enter the number of intervals\n");
+	scanf("%d",&k.r);
+	printf("Enter the intervals\n");
+	for(int i=0;i<k.r;i++)
+	{
+			
+		scanf("%d",&k.a[i]);
+		scanf("%d",&k.b[i]);
+	}
+	return k;
+}
+struct intervals input_union(struct interval k)
+{
+	struct intervals l;
+	printf("Enter the number of unions");
+	scanf("%d",&l.n);
+	for(int i=0;i<l.n;i++)
+	{
+	k=input_function();
+	}
+	return l;
+}
+int main()
+{
+	struct intervals l;
+	struct interval k;
+	l=input_union(k);
+}
