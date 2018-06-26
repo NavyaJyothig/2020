@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<string.h>
+struct CODON
+{
+	char nucleotides[100];
+	
+};
+struct DNA
+{
+	int t;
+	struct CODON j[100];
+};
+struct DNA input_function()
+{
+	struct CODON d;
+	struct DNA k;
+	printf("Enter the number of test cases of the nucleotides\n");
+	scanf("%d",&k.t);
+	printf("Enter the nucleotides\n");
+	for(int i=0;i<k.t;i++)
+	{
+		scanf("%s",k.j[i].nucleotides);
+	}
+return k;
+}
+int main()
+{
+	struct DNA k;
+	k=input_function();
+}
+	
