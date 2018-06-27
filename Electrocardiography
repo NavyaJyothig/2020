@@ -1,34 +1,71 @@
 #include<stdio.h>
-struct waveform
+#include<string.h>
+struct ECG
 {
 	char observable_volt[100];
 };
-struct ECG
+struct ECGS
 {
 	int t;
-	struct waveform ECG[100];
+	struct ECG E[100];
 };
-struct waveform input_waveform()
+struct RESULT
 {
-	struct waveform w;
+	char normal[];
+	char abnormal[];
+};
+struct ECG input_ECG()
+{
+	struct ECG w;
 	printf("Enter the ECG of the patient\n");
 	scanf("%s",w.observable_volt);
 	return w;
 }
-struct ECG input_ECG(struct waveform w)
+struct ECGS input_ECGS(struct ECG w)
 {
-	struct ECG e;
+	struct ECGS e;
 	printf("Enter the number of test cases to process\n");
 	scanf("%d",&e.t);
 	for(int i=0;i<e.t;i++)
 	{
-		w=input_waveform();
+		w=input_ECG();
 	}
 return e;
 }
+void compute(struct ECG w)
+{
+	struct ECGS e;
+	int count1=0,count2=0;
+	for(int y=0;y<strlen(w.observable_volt);y++)
+	{
+		for(int u=y+1;u<strlen(w.observable_volt);u++)
+		{
+			if(w.observable_volt[y]==w.observable_volt[u])
+				{
+						count1++;
+				}
+		}
+	}
+	for(int x=strlen(w.observable_volt)-1;x>0;x++)
+	{
+		for(int v=strlen(w.observable_volt)-2;v>0;v++)
+			{
+				if(w.observable_volt[x]==w.observable_volt[v])
+					{
+						count2++;
+					}
+			}
+	}
+	if(count1==count2)
+	printf("REGULAR");
+	else
+	printf("IRREGULAR");
+}
+
 int main()
 {
-	struct waveform w;
-	struct ECG e;
-	e=input_ECG(w);
+	struct ECG w;
+	struct ECGS e;
+	e=input_ECGS(w);
+	compute(w);
 }
