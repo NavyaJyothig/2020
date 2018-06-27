@@ -1,0 +1,34 @@
+#include<stdio.h>
+struct waveform
+{
+	char observable_volt[100];
+};
+struct ECG
+{
+	int t;
+	struct waveform ECG[100];
+};
+struct waveform input_waveform()
+{
+	struct waveform w;
+	printf("Enter the ECG of the patient\n");
+	scanf("%s",w.observable_volt);
+	return w;
+}
+struct ECG input_ECG(struct waveform w)
+{
+	struct ECG e;
+	printf("Enter the number of test cases to process\n");
+	scanf("%d",&e.t);
+	for(int i=0;i<e.t;i++)
+	{
+		w=input_waveform();
+	}
+return e;
+}
+int main()
+{
+	struct waveform w;
+	struct ECG e;
+	e=input_ECG(w);
+}
