@@ -1,0 +1,79 @@
+#include<stdio.h>
+#include<math.h>
+struct point
+{
+	float x;
+	float y;
+};
+struct polygonal_chain
+{
+	int n;
+	struct point points[100];
+	float area;
+};
+struct polygonal_chains
+{
+	int t;
+	struct polygonal_chain poly[100];
+}; 
+struct polygonal_chain input_function()
+{
+	struct polygonal_chain p;
+	printf("Enter the number of points in the polygonal chain\n");
+	scanf("%d",&p.n);
+	printf("Enter the coordinates polygonal chain\n");
+	for(int i=0;i<p.n;i++)
+		{
+			scanf("%f%f",&p.points[i].x,&p.points[i].y);
+		}
+return p;
+}
+struct polygonal_chains input_functions()
+{
+	struct polygonal_chains polygonals;
+	printf("Enter the number of test cases to process\n");
+	scanf("%d",&polygonals.t);
+	for(int i=0;i<polygonals.t;i++)
+	{
+		polygonals.poly[i]=input_function();
+	}
+return polygonals;
+}
+
+float compute(point p1, point p2)
+{
+	float x=p2.x-p1.x;
+	float hr = p2.y>p1.y?p1.y:p2.y;
+	float ht = p2.y - p1.y;
+	if ( ht < 0) { 
+		ht = -ht;
+	}
+	return x * hr + (1/2.0) * ht * x;
+}
+
+struct polygonal_chain compute_area_under_polygonchain( struct polygonal_chain p)
+{
+	point p1, p2;
+	p.area=0;
+ 	for(int r=0;r<p.n -1 ;r++)
+	{
+		p1=p.points[r];
+		p2=p.points[r+1];
+		p.area += compute(p1,p2);
+	}
+
+	return p;
+}
+void display(struct polygonal_chain p)
+{
+	printf("The area %f",p.area);
+}
+
+
+int main()
+{
+	struct polygonal_chain p;
+	p=input_function();
+	p=compute_area_under_polygonchain(p);
+	display(p);
+}
