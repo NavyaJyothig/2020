@@ -1,0 +1,29 @@
+#include<stdio.h>
+struct array
+{
+	int n;
+	int a[100];
+};
+struct array input_function()
+{
+	struct array b;
+	printf("Enter the size of an array\n");
+	scanf("%d",&b.n);
+	printf("Enter the elements of an  array\n");
+	for(int i=0;i<b.n;i++)
+	{
+	scanf("%d",&b.a[i]);
+	}
+return b;
+}
+int compute(struct array b)
+{
+	int piv;
+	b=input_function();
+	piv=b.a[0];
+}
+int main()
+{
+	struct array b;
+	compute(b);
+}
