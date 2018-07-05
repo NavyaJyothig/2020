@@ -1,0 +1,91 @@
+#include<stdio.h>
+struct array
+{
+	int n;
+	int a[100];
+};
+struct array input_function()
+{
+	struct array b;
+	printf("ENTER THE SIZE OF THE ARRAY\n");
+	scanf("%d",&b.n);
+	printf("ENTER THE ELEMENTS OF THE ARRAY\n");
+	for(int i=0;i<b.n;i++)
+	{
+	scanf("%d",&b.a[i]);
+	}
+	return b;
+}
+
+int compute(struct array b)
+{
+	int piv=b.a[0],temp,temp1,temp2,mid,low=0,high=b.n-1,t1,t2;
+	for(int d=0;d<b.n;d++)
+	{
+		if(b.a[0]<b.a[d])
+		{
+			for(int g=0;g<b.n;g++)
+			{
+				for(int y=0;y<b.n;y++)
+				{
+				if(b.a[g]<b.a[y])
+				{
+				temp=b.a[g];
+				b.a[g]=b.a[y];
+				b.a[y]=temp;
+				}
+				}
+			}
+		}  
+		else if(b.a[0]>b.a[d])
+		{
+			temp1=b.a[0];
+			b.a[0]=b.a[b.n-1];
+			b.a[b.n-1]=temp1;
+			
+			for(int h=0;h<b.n-1;h++)
+			{
+				for(int r=0;r<b.n-1;r++)
+				{
+					if(b.a[h]<b.a[r])
+					{
+					temp2=b.a[h];
+					b.a[h]=b.a[r];
+					b.a[r]=temp2;
+
+					
+
+					}
+				}
+			}
+		
+		}
+		else
+		mid=(low+high)/2;
+			for(int p=0;p<b.n;p++)
+			{
+				t1=piv;
+				t2=b.a[mid];
+				piv=t2;
+				b.a[mid]=t1;
+			}	
+		
+		
+	}
+	
+	printf("Elements of the array after sorting is\n");
+	for(int j=0;j<b.n;j++)
+	{
+	printf("%d",b.a[j]);
+	printf("\n");
+	}
+
+}
+		
+int main()
+{
+	struct array b;
+	b=input_function();
+	compute(b);
+}
+
